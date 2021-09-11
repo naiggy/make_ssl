@@ -14,7 +14,7 @@ esac
 
 systemctl stop httpd
 
-dnf install -y mod_ssl
+yum install -y mod_ssl
 cd private_ssl
 chmod 400 localhost*
 chmod 755 password
