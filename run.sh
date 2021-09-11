@@ -14,13 +14,13 @@ esac
 
 if [ "root" != "$USER" ];then
     echo "Please run it with root user."
-    echo "Abort the  installation"
+    echo "The installation has been stopped."
     exit 1
 fi
 is_el8=`grep "release 8" /etc/redhat-release | wc -l`
 if [ "${is_el8}" != "1" ];then
     echo "Please use this program with centos 8."
-    echo "Abort the  installation"
+    echo "The installation has been stopped."
     exit 1
 fi
 
