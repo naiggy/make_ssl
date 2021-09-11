@@ -12,6 +12,8 @@ case "$yn" in
     *) echo "Abort the  installation. bye ";exit ;;
 esac
 
+systemctl stop httpd
+
 dnf install -y mod_ssl
 cd private_ssl
 chmod 400 localhost*
@@ -33,15 +35,13 @@ cp -p ./localhost.crt /etc/pki/tls/certs/
 cp -p ./localhost.csr /etc/pki/tls/certs/
 cp -p ./password /usr/libexec/
 
-systemctl stop httpd
-
 mv /etc/crypto-policies/config /etc/crypto-policies/config${file_exetension}
 echo "LEGACY" > /etc/crypto-policies/config
 update-crypto-policies
 cp -p /etc/httpd/conf.d/ssl.conf /etc/httpd/conf.d/ssl.conf${file_exetension}
 sed -i -e 's/SSLPassPhraseDialog exec:\/usr\/libexec\/httpd-ssl-pass-dialog/SSLPassPhraseDialog exec:\/usr\/libexec\/password/g' /etc/httpd/conf.d/ssl.conf
 
-systemctl restart httpd
+systemctl start httpd
 
 echo "Product by park.iggy"
 echo "Email adress naiggy@gmail.com"
