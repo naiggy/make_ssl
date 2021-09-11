@@ -55,5 +55,5 @@ sed -i -e 's/SSLPassPhraseDialog exec:\/usr\/libexec\/httpd-ssl-pass-dialog/SSLP
 
 systemctl start httpd
 
-echo "Product by park.iggy"
-echo "Email adress naiggy@gmail.com"
+echo "ssl Install Completed."
+echo "Product by Park.iggy<naiggy@gmail.com>"
