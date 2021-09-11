@@ -12,9 +12,21 @@ case "$yn" in
     *) echo "Abort the  installation. bye ";exit ;;
 esac
 
+if [ "root" != "$USER" ];then
+    echo "Please run it with root user."
+    echo "Abort the  installation"
+    exit 1
+fi
+is_el8=`grep "release 8" /etc/redhat-release | wc -l`
+if [ "${is_el8}" != "1" ];then
+    echo "Please use this program with centos 8."
+    echo "Abort the  installation"
+    exit 1
+fi
+
 systemctl stop httpd
 
-yum install -y mod_ssl
+dnf install -y mod_ssl
 cd private_ssl
 chmod 400 localhost*
 chmod 755 password
