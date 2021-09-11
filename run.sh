@@ -33,6 +33,8 @@ cp -p ./localhost.crt /etc/pki/tls/certs/
 cp -p ./localhost.csr /etc/pki/tls/certs/
 cp -p ./password /usr/libexec/
 
+systemctl stop httpd
+
 mv /etc/crypto-policies/config /etc/crypto-policies/config${file_exetension}
 echo "LEGACY" > /etc/crypto-policies/config
 update-crypto-policies
